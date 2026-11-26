@@ -2,6 +2,8 @@
 
 Author: Yuki Obuchi
 
+Theorems 1 and 2 are also machine-checked in Lean 4 with Mathlib; see [lean/](lean/) and the README.
+
 All arithmetic is over $\mathbb F_2$. Variables are Boolean, so $x_k^2=x_k$, and we compute Boolean functions, i.e. elements of $\mathbb F_2[x,y]/(x_k^2-x_k,\ y_s^2-y_s)$, not formal polynomials.
 
 ## 1. Definitions and results

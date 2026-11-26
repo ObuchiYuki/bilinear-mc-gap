@@ -41,6 +41,9 @@ The repository contains \texttt{verify.py}, a standalone verifier that uses only
 \end{itemize}
 It runs automatically on every push.
 
+\section*{Lean formalization}
+Theorems~\ref{thm:frame} and~\ref{thm:gap} are proved in Lean~4 with Mathlib in the directory \texttt{lean/} of the repository (theorems \texttt{universal\_circuit}, \texttt{rank\_le\_two\_mul\_size}, \texttt{rank\_gap}, \texttt{gap}, \texttt{mc\_lt\_qmc}). There is no \texttt{sorry}, and the only axioms are \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The statements use the definitions in \texttt{lean/BilinearMcGap/Defs.lean}, which the reader should compare with Section~1.
+
 \section*{Acknowledgments}
 The construction was found, and its proofs and verifier were drafted and checked, with the help of AI assistants (Claude by Anthropic; Gemini by Google for an independent cross-check). The author reviewed the final statements.
 

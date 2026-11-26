@@ -3,10 +3,11 @@
 **A Polynomial Gap Between Multiplicative and Quadratic-Circuit Complexity over $\mathbb F_2$.**
 
 [![verify](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/verify.yml/badge.svg)](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/verify.yml)
+[![lean](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/lean.yml/badge.svg)](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/lean.yml)
 
 **Author:** Yuki Obuchi  
 **First published:** 2026-11-26  
-**Status:** research note (not peer-reviewed, not formally verified)
+**Status:** research note (not peer-reviewed). Theorems 1 and 2 are machine-checked in Lean 4 with Mathlib ([lean/](lean/)).
 
 How many AND gates does a set of $n$ bilinear forms over $\mathbb F_2$ need, when XOR is free? A circuit that only multiplies affine functions (a quadratic circuit) needs about as many AND gates as the bilinear rank, which is about $n^2/3$ for almost every map. This note shows that a circuit with **two** layers of AND gates does polynomially better, for every map at once.
 
@@ -68,6 +69,29 @@ The verifier performs these checks:
 - The base wiring is the unique solution of the linear system (rank 144).
 - The $(16,16,16;144,144)$ frame computes random dense targets, checked as exact reduced polynomials.
 - The integer thresholds $N\ge7$ and $N\ge9$ hold.
+
+## Lean formalization
+
+The directory [lean/](lean/) proves both theorems in Lean 4 with Mathlib. There is no `sorry`, and every theorem depends only on the standard axioms `propext`, `Classical.choice` and `Quot.sound`. The CI checks this on every push.
+
+| Lean theorem | Statement |
+| :--- | :--- |
+| `universal_circuit` | every bilinear map on $\mathbb F_2^{4^N}$ has a circuit with exactly $2\cdot12^N$ AND gates |
+| `rank_le_two_mul_size` | a quadratic circuit with $s$ AND gates gives rank $\le 2s$ |
+| `rank_gap` | for $N\ge7$, at most a $2^{-n}$ fraction of maps have rank $\le 2\cdot12^N$ |
+| `gap` | for $N\ge9$, at most a $2^{-n}$ fraction of maps have a quadratic circuit with $\le 2\cdot12^N$ AND gates |
+| `mc_lt_qmc` | `universal_circuit` and `gap` combined |
+
+All statements are phrased with the definitions in [lean/BilinearMcGap/Defs.lean](lean/BilinearMcGap/Defs.lean): circuits with fan-in-two AND gates and free affine (XOR) combinations, quadratic circuits, bilinear maps as coefficient tensors, and tensor rank. A reader who wants to trust the formal result should check that these definitions match the intended notions. [Sanity.lean](lean/BilinearMcGap/Sanity.lean) checks that a circuit without AND gates cannot compute $xy$.
+
+Build (Lean toolchain from `lean-toolchain`, Mathlib pinned in `lakefile.toml`):
+
+```sh
+cd lean
+lake exe cache get
+lake build
+lake env lean Axioms.lean
+```
 
 ## Scope
 
