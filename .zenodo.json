@@ -1,0 +1,54 @@
+{
+  "title": "Bilinear Maps in Fewer AND Gates than Rank: A Polynomial Gap Between Multiplicative and Quadratic-Circuit Complexity over F2",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "description": "<p>For n = 4<sup>N</sup>, every bilinear map F<sub>2</sub><sup>n</sup> &times; F<sub>2</sub><sup>n</sup> &rarr; F<sub>2</sub><sup>n</sup> is computed by a fixed AND-depth-two frame with 2&middot;12<sup>N</sup> = 2n<sup>log<sub>4</sub>12</sup> = O(n<sup>1.7925</sup>) AND gates (XOR free); only the wiring depends on the map. By counting, almost every such map has bilinear rank at least n<sup>2</sup>/3 and therefore needs at least n<sup>2</sup>/6 AND gates in any quadratic (level-one) circuit. Hence, for almost all bilinear maps, the ratio between quadratic-circuit complexity and multiplicative complexity is at least n<sup>0.2075</sup>/12 (non-explicit). To the best of our knowledge this polynomial gap is new; it strengthens the single explicit separation 6 &lt; 7 of the companion note. Proofs are in PROOF.md and the PDF; the base frame is checked by a standalone verifier (verify.py). Research note; not peer-reviewed.</p>",
+  "creators": [
+    {
+      "name": "Obuchi, Yuki"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "multiplicative complexity",
+    "bilinear maps",
+    "bilinear rank",
+    "quadratic Boolean forms",
+    "XOR-AND circuits",
+    "quadratic circuit optimality",
+    "Boolean circuit complexity"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1016/0304-3975(92)90235-8",
+      "relation": "cites",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1016/j.tcs.2018.02.023",
+      "relation": "cites",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.5281/zenodo.24525440",
+      "relation": "cites",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "https://github.com/ObuchiYuki/bilinear-mc-gap",
+      "relation": "isSupplementedBy",
+      "scheme": "url",
+      "resource_type": "software"
+    }
+  ],
+  "references": [
+    "Mirwald, R., Schnorr, C.-P. (1992). The multiplicative complexity of quadratic Boolean forms. Theoretical Computer Science 102(2), 307-328. doi:10.1016/0304-3975(92)90235-8",
+    "Boyar, J., Find, M. G. (2018). Multiplicative complexity of vector valued Boolean functions. Theoretical Computer Science 720, 36-46. doi:10.1016/j.tcs.2018.02.023",
+    "Obuchi, Y. (2026). Six AND Gates Beat Seven: A Counterexample to Quadratic-Circuit Optimality over F2. Zenodo. doi:10.5281/zenodo.24525440"
+  ],
+  "version": "1.0.0"
+}

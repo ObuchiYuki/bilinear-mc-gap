@@ -1,0 +1,166 @@
+\section{Definitions and results}
+
+All arithmetic is over $\F$. Variables are Boolean, so $x_k^2=x_k$, and we compute Boolean functions, i.e.\ elements of $\F[x,y]/(x_k^2-x_k,\,y_s^2-y_s)$, not formal polynomials.
+
+A bilinear map $\varphi:\F^{n_x}\times\F^{n_y}\to\F^{d}$ is given by its coefficient tensor:
+\[
+\varphi_a(x,y)=\sum_{k,s}\varphi[k,s,a]\,x_ky_s\qquad(a=1,\dots,d).
+\]
+Its rank $R(\varphi)$ is the least $r$ such that $\varphi$ is a sum of $r$ tensors $u\otimes v\otimes w$.
+
+Circuits consist of fan-in-two AND gates, and XOR gates and constants, which are free.
+\begin{itemize}
+\item $\MC(\varphi)$ is the least number of AND gates in any circuit computing $\varphi_1,\dots,\varphi_d$.
+\item $\qMC(\varphi)$ is the least number of AND gates in a \emph{quadratic circuit}. In such a circuit every AND gate multiplies two affine functions of the inputs, and each output is an affine combination of AND gates and inputs. These are the level-one circuits $L_1$ of Mirwald and Schnorr~\cite{MS92} and the quadratic circuits of Boyar and Find~\cite{BF18}.
+\end{itemize}
+
+\begin{theorem}[universal two-layer frame]\label{thm:frame}
+Let $n=4^N$. Every bilinear map $\varphi:\F^n\times\F^n\to\F^n$ is computed by a circuit of AND-depth two with exactly $12^N+12^N=2n^{\log_4 12}$ AND gates ($\log_412=1.79248\ldots$). All linear forms entering the AND gates and all output assignments are independent of $\varphi$; only a $0/1$ wiring matrix depends on $\varphi$. For arbitrary $n$, $\MC(\varphi)\le 24\,n^{\log_4 12}$.
+\end{theorem}
+
+\begin{theorem}[polynomial gap]\label{thm:gap}
+Let $n=4^N$. For all but a $2^{-n}$ fraction of the bilinear maps $\varphi:\F^n\times\F^n\to\F^n$, the following hold.
+\begin{enumerate}
+\item If $N\ge7$, then $\MC(\varphi)\le2\cdot12^N<n^2/3\le R(\varphi)$.
+\item If $N\ge9$, then $\MC(\varphi)\le2\cdot12^N<n^2/6\le\qMC(\varphi)$.
+\end{enumerate}
+In particular, $\qMC(\varphi)/\MC(\varphi)\ge n^{2-\log_412}/12=n^{0.2075\ldots}/12$.
+\end{theorem}
+
+Theorem~\ref{thm:frame} is constructive. Theorem~\ref{thm:gap} combines it with a counting bound, so it gives no explicit map.
+
+\section{Two-layer frames}
+
+A \emph{frame} of shape $(n_x,n_y,d)$ with $m$ gates and $t$ products consists of
+\begin{itemize}
+\item linear forms $\xi_j$ in $x$ and $\eta_j$ in $y$ ($j\le t$), and
+\item linear forms $\lambda_i$ in $x$ with output sets $c_i\subseteq\{1,\dots,d\}$ ($i\le m$).
+\end{itemize}
+A \emph{wiring} is a matrix $Q\in\F^{m\times t}$. The frame with wiring $Q$ is the circuit
+\[
+p_j=\xi_j(x)\,\eta_j(y),\qquad h_i=\lambda_i(x)\cdot\sum_jQ_{ij}\,p_j,\qquad \mathrm{out}_a=\sum_{i:\,a\in c_i}h_i,
+\]
+with exactly $t+m$ AND gates and AND-depth two. The frame is \emph{universal} if every bilinear map of its shape is computed by some wiring. Write $c_i[a]=1$ if $a\in c_i$, and put
+\[
+\Omega[k,l,s,a]=\sum_{i,j}Q_{ij}\,\lambda_i[k]\,c_i[a]\,\xi_j[l]\,\eta_j[s].
+\]
+
+\begin{lemma}\label{lem:crit}
+The circuit computes $\varphi$ if and only if $\Omega[k,l,s,a]=\Omega[l,k,s,a]$ for all $k\neq l$, and $\Omega[k,k,s,a]=\varphi[k,s,a]$, for all $s,a$.
+\end{lemma}
+\begin{proof}
+Formally, $\mathrm{out}_a=\sum_{k,l,s}\Omega[k,l,s,a]\,x_kx_ly_s$. As a Boolean function this equals
+\[
+\sum_{k,s}\Omega[k,k,s,a]\,x_ky_s+\sum_{k<l,\,s}\bigl(\Omega[k,l,s,a]+\Omega[l,k,s,a]\bigr)x_kx_ly_s .
+\]
+Distinct multilinear monomials are linearly independent as Boolean functions.
+\end{proof}
+
+Since $\Omega$ is linear in $Q$, a frame is universal as soon as every basis tensor $e_k\otimes e_s\otimes e_a$ has a wiring.
+
+\section{Two small frames}
+
+\begin{lemma}[type A]\label{lem:A}
+The frame of shape $(2,2,2)$ below is universal, with $3$ gates and $4$ products:
+\begin{itemize}
+\item gates $(x_1;\{1\})$, $(x_2;\{2\})$, $(x_1+x_2;\{1,2\})$;
+\item all products $x_ky_s$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+Write $\varphi_1=x_1\alpha_1(y)+x_2\beta_1(y)$ and $\varphi_2=x_1\alpha_2(y)+x_2\beta_2(y)$. Every bilinear $q_i=x_1a_i(y)+x_2b_i(y)$ is a wire sum. Then
+\begin{align*}
+x_1q_1+(x_1+x_2)q_3&=x_1(a_1+a_3)+x_2b_3+x_1x_2(b_1+a_3+b_3),\\
+x_2q_2+(x_1+x_2)q_3&=x_1a_3+x_2(b_2+b_3)+x_1x_2(a_2+a_3+b_3).
+\end{align*}
+Take $a_3=\alpha_2$, $b_3=\beta_1$, $a_1=\alpha_1+\alpha_2$, $b_1=a_2=\alpha_2+\beta_1$, $b_2=\beta_1+\beta_2$.
+\end{proof}
+
+\begin{lemma}[type B]\label{lem:B}
+The frame of shape $(2,2,2)$ below is universal, with $4$ gates and $3$ products:
+\begin{itemize}
+\item products $x_1y_1$, $x_2y_2$, $(x_1+x_2)(y_1+y_2)$;
+\item gates $(x_u;\{a\})$ for $u,a\in\{1,2\}$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+The sum of the three products is $x_1y_2+x_2y_1$. The four monomials are
+\[
+x_1y_1=x_1\cdot x_1y_1,\qquad x_2y_2=x_2\cdot x_2y_2,
+\]
+\[
+x_1y_2=x_1\cdot(x_1y_2+x_2y_1)+x_2\cdot x_1y_1,\qquad x_2y_1=x_2\cdot(x_1y_2+x_2y_1)+x_1\cdot x_2y_2 .
+\]
+For output $a$, sum these over the monomials of $\varphi_a$. The terms with multiplier $x_u$ combine into the gate $(x_u;\{a\})$.
+\end{proof}
+
+\section{Tensor products; proof of Theorem~\ref{thm:frame}}
+
+The product $F_1\otimes F_2$ of frames of shapes $(n_1,s_1,d_1)$ and $(n_2,s_2,d_2)$ has shape $(n_1n_2,s_1s_2,d_1d_2)$, with
+\begin{itemize}
+\item gates $(\lambda_{i_1}\otimes\lambda_{i_2};\,c_{i_1}\times c_{i_2})$,
+\item products $(\xi_{j_1}\otimes\xi_{j_2})(x)\cdot(\eta_{j_1}\otimes\eta_{j_2})(y)$.
+\end{itemize}
+
+\begin{lemma}\label{lem:tensor}
+If $F_1$ and $F_2$ are universal, so is $F_1\otimes F_2$.
+\end{lemma}
+\begin{proof}
+If $Q_1$ computes $\varphi_1$ and $Q_2$ computes $\varphi_2$, then the wiring $Q_1\otimes Q_2$ gives
+\[
+\Omega[(k_1,k_2),(l_1,l_2),(s_1,s_2),(a_1,a_2)]=\Omega_1[k_1,l_1,s_1,a_1]\,\Omega_2[k_2,l_2,s_2,a_2].
+\]
+This tensor is symmetric in its first two indices and has diagonal $\varphi_1\otimes\varphi_2$, so $Q_1\otimes Q_2$ computes $\varphi_1\otimes\varphi_2$ by Lemma~\ref{lem:crit}. Basis tensors of the product shape are products of basis tensors, so linearity finishes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:frame}]
+Type~A $\otimes$ type~B is a universal $(4,4,4)$ frame with $12$ gates and $12$ products. Its $N$-th tensor power is universal of shape $(4^N,4^N,4^N)$ with $12^N$ gates and $12^N$ products. For general $n$ with $4^{N-1}<n\le4^N$, pad with zeros: $2\cdot12^N=24\cdot12^{N-1}<24\,n^{\log_412}$.
+\end{proof}
+
+\section{Lower bounds; proof of Theorem~\ref{thm:gap}}
+
+\begin{lemma}\label{lem:q}
+For every bilinear map $\varphi$, $\qMC(\varphi)\ge R(\varphi)/2$.
+\end{lemma}
+\begin{proof}
+Let the AND gates be $g_r=A_rB_r$ with $A_r=\alpha_r(x)+\alpha'_r(y)+\epsilon_r$ and $B_r=\beta_r(x)+\beta'_r(y)+\epsilon'_r$ affine. A monomial $x_ky_s$ arises in $A_rB_r$ only as $x_k\cdot y_s$ or $y_s\cdot x_k$, and the reduction $x_k^2\to x_k$ does not touch it. So the $x$--$y$ part of $g_r$ is $\alpha_r\otimes\beta'_r+\beta_r\otimes\alpha'_r$.
+
+Each output is an affine combination of gates and inputs. By uniqueness of the reduced polynomial, $\varphi$ is a sum of at most $2k$ rank-one tensors.
+\end{proof}
+
+\begin{lemma}\label{lem:count}
+Let $n=4^N$. At most a $2^{-n}$ fraction of $n\times n\times n$ tensors over $\F$ have rank $<n^2/3$.
+\end{lemma}
+\begin{proof}
+At most $2^{3nr}$ tensors have rank $\le r$. Since $n^2\equiv1\pmod3$, rank $<n^2/3$ means rank $\le r=(n^2-1)/3$, and then $3nr=n^3-n$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:gap}]
+By Theorem~\ref{thm:frame}, $\MC(\varphi)\le2\cdot12^N$. By Lemma~\ref{lem:count}, outside a $2^{-n}$ fraction we have $R(\varphi)\ge16^N/3$, and then $\qMC(\varphi)\ge16^N/6$ by Lemma~\ref{lem:q}.
+
+The inequality $2\cdot12^N<16^N/3$ is equivalent to $(4/3)^N>6$, i.e.\ $N\ge7$. The inequality $2\cdot12^N<16^N/6$ is equivalent to $(4/3)^N>12$, i.e.\ $N\ge9$.
+\end{proof}
+
+\section{Remarks and scope}
+
+\begin{remark}[counting lower bound for MC]
+There are at most $2^{(2s+n)(s+2n+1)}$ circuits with $s$ AND gates. Hence most bilinear maps need $\MC=\Omega(n^{3/2})$, and the generic exponent lies between $3/2$ and $\log_412$. The best exponent of a universal frame is open.
+\end{remark}
+
+\begin{remark}[asymmetry is necessary]
+Identify the $x$- and $y$-coordinates, and suppose every wire sum $q_i$ is a symmetric bilinear form. Put $S(u,v,w)=\sum_ic_i\lambda_i(u)q_i(v,w)$. If the output is bilinear, Lemma~\ref{lem:crit} makes $S$ symmetric in its first two arguments. Symmetry of the $q_i$ makes it symmetric in its last two arguments, so $S(x,x,y)=S(y,x,x)=\sum_ic_i\lambda_i(y)q_i(x,x)$. Every computed form is then a sum of at most $m$ rank-one forms, so such circuits never beat the rank.
+\end{remark}
+
+\begin{remark}[what is not claimed]
+\begin{itemize}
+\item Nothing is claimed about explicit maps.
+\item Nothing is claimed about matrix multiplication: with $n=k^2$, Theorem~\ref{thm:frame} gives $O(k^{3.585})$.
+\item Nothing is claimed about asymptotic rank.
+\item Nothing is claimed about total circuit size. The wirings are dense, so the circuits have about $n^{3.585}$ XOR gates, and most maps need total size $\Omega(n^3/\log n)$ anyway.
+\item For $N\le8$ the counting argument does not guarantee a gap, which does not mean that none exists.
+\end{itemize}
+\end{remark}
+
+\begin{remark}[quadratic-circuit optimality]
+Mirwald and Schnorr~\cite{MS92} asked whether $L=L_1$ for sets of quadratic forms; equality is known for one or two forms. An explicit set with $\MC=6<7=\qMC$ is given in~\cite{Ob26}. Theorem~\ref{thm:gap} shows that the ratio $L_1/L$ is unbounded, already for bilinear maps.
+\end{remark}

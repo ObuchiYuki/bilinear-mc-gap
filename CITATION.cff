@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this result, please cite it as below."
+type: software
+title: "Bilinear Maps in Fewer AND Gates than Rank: A Polynomial Gap Between Multiplicative and Quadratic-Circuit Complexity over F2"
+abstract: >-
+  For n = 4^N, every bilinear map F2^n x F2^n -> F2^n is computed by a fixed
+  AND-depth-two frame with 2 n^{log_4 12} = O(n^1.7925) AND gates; only the
+  XOR wiring depends on the map. By counting, almost every such map has
+  bilinear rank at least n^2/3 and hence needs at least n^2/6 AND gates in
+  any quadratic (level-one) circuit. So the ratio between quadratic-circuit
+  and unrestricted multiplicative complexity is at least n^0.2075/12 for
+  almost all bilinear maps (non-explicit). Research note; not peer-reviewed.
+authors:
+  - given-names: Yuki
+    family-names: Obuchi
+version: 1.0.0
+date-released: 2026-11-26
+repository-code: "https://github.com/ObuchiYuki/bilinear-mc-gap"
+url: "https://github.com/ObuchiYuki/bilinear-mc-gap"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - multiplicative complexity
+  - bilinear maps
+  - bilinear rank
+  - quadratic Boolean forms
+  - XOR-AND circuits
+  - quadratic circuit optimality
+  - Boolean circuit complexity

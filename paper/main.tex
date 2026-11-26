@@ -1,0 +1,51 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Bilinear Maps in Fewer AND Gates than Rank: A Polynomial Gap Between Multiplicative and Quadratic-Circuit Complexity over F2},
+  pdfauthor={Yuki Obuchi},
+  pdfsubject={Multiplicative complexity of bilinear maps over F2},
+  pdfkeywords={multiplicative complexity, bilinear maps, bilinear rank, quadratic Boolean forms, XOR-AND circuits, quadratic circuit optimality, Boolean circuit complexity},
+  pdfcreator={LaTeX},
+}
+\DeclareMathOperator{\MC}{MC}
+\DeclareMathOperator{\qMC}{qMC}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\F}{\mathbb F_2}
+\title{Bilinear Maps in Fewer AND Gates than Rank:\\ A Polynomial Gap Between Multiplicative and\\ Quadratic-Circuit Complexity over $\mathbb F_2$}
+\author{Yuki Obuchi}
+\date{Research note, first published 2026-11-26\\ \small \url{https://github.com/ObuchiYuki/bilinear-mc-gap}}
+\begin{document}
+\maketitle
+\begin{abstract}
+For $n=4^N$, every bilinear map $\varphi:\F^n\times\F^n\to\F^n$ is computed by a circuit of AND-depth two with $2\cdot 12^N=2n^{\log_4 12}=O(n^{1.7925})$ AND gates, XOR gates being free. All gate inputs come from one fixed frame; only the XOR wiring depends on $\varphi$. The frame is a tensor power of a $(4,4,4)$ frame with twelve products and twelve second-layer gates, itself the product of a Karatsuba-type block and its dual; the saving comes from cancelling cubic cross terms using $x\cdot x=x$. By counting, almost every such map has bilinear rank at least $n^2/3$ and therefore needs at least $n^2/6$ AND gates in any quadratic (level-one) circuit. Consequently, for $N\ge 9$ almost all bilinear maps satisfy $\MC(\varphi)<\qMC(\varphi)$ with ratio at least $n^{0.2075}/12$, and for $N\ge 7$ almost all satisfy $\MC(\varphi)<R(\varphi)$. The gap is non-explicit. To the best of our knowledge it is new; it strengthens a single explicit separation $6<7$ from a companion note. This note has not been peer-reviewed.
+\end{abstract}
+
+\input{body.tex}
+
+\section*{Verification}
+The repository contains \texttt{verify.py}, a standalone verifier that uses only the Python standard library (Python~3.10+). It performs the following checks:
+\begin{itemize}
+\item types~A and~B compute all 256 maps of their shape;
+\item the $(4,4,4;12,12)$ base frame computes all 64 basis tensors on all 256 inputs, hence all $2^{64}$ maps by linearity, and its wiring is the unique solution of the linear system of Lemma~1 (rank 144);
+\item the $(16,16,16;144,144)$ frame computes random dense targets, checked as exact reduced polynomials;
+\item the integer thresholds $N\ge7$ and $N\ge9$ hold.
+\end{itemize}
+It runs automatically on every push.
+
+\section*{Acknowledgments}
+The construction was found, and its proofs and verifier were drafted and checked, with the help of AI assistants (Claude by Anthropic; Gemini by Google for an independent cross-check). The author reviewed the final statements.
+
+\input{refs.tex}
+
+\vfill
+\noindent\small This note is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). The accompanying code is MIT-licensed.
+\end{document}
