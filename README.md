@@ -99,13 +99,14 @@ lake env lean Axioms.lean
 - Nothing is claimed about explicit maps, matrix multiplication, or asymptotic rank. For matrix multiplication, $n=k^2$ gives $O(k^{3.585})$, which is worse than $k^3$.
 - For $n<4^9$ (resp. $4^7$) the counting argument does not guarantee a gap, and the generic exponent is open. By counting, it lies between $3/2$ and $1.7925$.
 
-To the best of our knowledge, the polynomial gap between MC and qMC for bilinear maps is new. This is a research note, not a peer-reviewed publication.
+A related separation is due to Jukna (2006): for *representing* graphs (a partial, single-output function that must be correct only on inputs of weight two), level-one circuits can need $\Omega(n/\log n)$ times more AND gates. Here the maps are computed exactly, with many outputs. To the best of our knowledge, the polynomial gap between MC and qMC for exactly computed bilinear maps is new. This is a research note, not a peer-reviewed publication.
 
 ## References
 
 1. Roland Mirwald and Claus-Peter Schnorr. [The multiplicative complexity of quadratic Boolean forms](https://doi.org/10.1016/0304-3975(92)90235-8). *Theoretical Computer Science* 102(2):307–328, 1992. [doi:10.1016/0304-3975(92)90235-8](https://doi.org/10.1016/0304-3975(92)90235-8). See §5, p. 325, which asks whether $L=L_1$ for all sets of quadratic forms.
 2. Joan Boyar and Magnus Gausdal Find. [Multiplicative complexity of vector valued Boolean functions](https://doi.org/10.1016/j.tcs.2018.02.023). *Theoretical Computer Science* 720:36–46, 2018. [doi:10.1016/j.tcs.2018.02.023](https://doi.org/10.1016/j.tcs.2018.02.023); [arXiv:1407.6169](https://arxiv.org/abs/1407.6169).
-3. Yuki Obuchi. [Six AND Gates Beat Seven: A Counterexample to Quadratic-Circuit Optimality over F2](https://doi.org/10.5281/zenodo.24525440). Research note, 2026. [doi:10.5281/zenodo.24525440](https://doi.org/10.5281/zenodo.24525440). This is the explicit single example $\mathrm{MC}=6<7=\mathrm{qMC}$.
+3. Stasys Jukna. [Graphs and circuits: some further remarks](https://doi.org/10.4230/DagSemProc.06111.8). Dagstuhl Seminar Proceedings 06111, 2006. [doi:10.4230/DagSemProc.06111.8](https://doi.org/10.4230/DagSemProc.06111.8). See Thm 2.1.
+4. Yuki Obuchi. [Six AND Gates Beat Seven: A Counterexample to Quadratic-Circuit Optimality over F2](https://doi.org/10.5281/zenodo.24525440). Research note, 2026. [doi:10.5281/zenodo.24525440](https://doi.org/10.5281/zenodo.24525440). This is the explicit single example $\mathrm{MC}=6<7=\mathrm{qMC}$.
 
 ## How to cite
 
