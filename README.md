@@ -4,9 +4,11 @@
 
 [![verify](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/verify.yml/badge.svg)](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/verify.yml)
 [![lean](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/lean.yml/badge.svg)](https://github.com/ObuchiYuki/bilinear-mc-gap/actions/workflows/lean.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24560511.svg)](https://doi.org/10.5281/zenodo.24560511)
 
 **Author:** Yuki Obuchi  
 **First published:** 2026-11-26  
+**DOI:** [10.5281/zenodo.24560511](https://doi.org/10.5281/zenodo.24560511) (all versions; per-version DOIs are listed on Zenodo)  
 **Status:** research note (not peer-reviewed). Theorems 1 and 2 are machine-checked in Lean 4 with Mathlib ([lean/](lean/)).
 
 How many AND gates does a set of $n$ bilinear forms over $\mathbb F_2$ need, when XOR is free? A circuit that only multiplies affine functions (a quadratic circuit) needs about as many AND gates as the bilinear rank, which is about $n^2/3$ for almost every map. This note shows that a circuit with **two** layers of AND gates does polynomially better, for every map at once.
@@ -112,7 +114,7 @@ A related separation is due to Jukna (2006): for *representing* graphs (a partia
 
 Use GitHub's "Cite this repository" button, or see [CITATION.cff](CITATION.cff).
 
-> Yuki Obuchi. *Bilinear Maps in Fewer AND Gates than Rank: A Polynomial Gap Between Multiplicative and Quadratic-Circuit Complexity over F2.* Research note, 2026.
+> Yuki Obuchi. *Bilinear Maps in Fewer AND Gates than Rank: A Polynomial Gap Between Multiplicative and Quadratic-Circuit Complexity over F2.* Research note, 2026. Zenodo. https://doi.org/10.5281/zenodo.24560511
 
 ## Acknowledgments
 
